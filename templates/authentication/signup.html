@@ -1,0 +1,75 @@
+{% extends 'authentication/authbase.html' %}
+{% load static %}
+
+{% block extracss %}
+{% endblock extracss %}
+
+
+{% block title %}
+        Signup
+{% endblock title %}  
+
+
+
+
+{% block bodycontent %}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-info">
+            <h5 class="text-center text-white">Signup</h5>
+        </div>
+        <div class="card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label class="form-control-label mt-3">Username</label>
+                    
+                    {% if myform.errors.username %}
+                        <h6 class="text-danger">{{ myform.errors.username  }}</h6>
+                    {% endif %}
+                        
+                    <input type="text" class="form-control" name="username" placeholder="Username" required>
+
+                    <label class="form-control-label mt-3">Email</label>
+                    {% if myform.errors.email %}
+                        <h6 class="text-danger">{{ myform.errors.email  }}</h6>
+                    {% endif %}
+                    <input type="email" class="form-control" name="email" placeholder="xyz@gmail.com" required>
+        
+                    <label class="form-control-label mt-3">Password</label>
+                    {% if myform.errors.password1 %}
+                        <h6 class="text-danger">{{ myform.errors.password1  }}</h6>
+                    {% endif %}
+                    <input type="password" class="form-control" name="password1" placeholder="********" required>
+
+                    <label class="form-control-label mt-3">Confirm</label>
+                    {% if myform.errors.password2 %}
+                        <h6 class="text-danger">{{ myform.errors.password2  }}</h6>
+                    {% endif %}
+                    <input type="password" class="form-control" name="password2" placeholder="********" required>
+        
+                    <button class="btn btn-primary mt-3">Signup</button>
+                    <input type="reset" class="btn btn-warning mt-3" value="Reset">
+                </div>
+            </form>
+
+
+            <a href="{% url 'loginpage' %}">Already have account? Login</a>
+            <br><a href="{% url 'home' %}">Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock bodycontent %}
+    
+
+{% block extrajs %}
+<script>
+    $(document).ready(function () {
+      window.history.replaceState('', '', window.location.href);
+    });
+  </script>
+
+{% endblock extrajs %}

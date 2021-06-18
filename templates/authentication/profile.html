@@ -1,0 +1,48 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/myprofile.css' %}">
+{% endblock extracss %}
+
+
+{% block title %}
+        Profile
+{% endblock title %}  
+
+
+{% block profileactive %}
+                active
+{% endblock profileactive %}
+
+
+{% block bodycontent %}
+<div class="container">
+        <div class="card mycard">
+                <div class="card-header bg-primary text-white ">
+                        <h2>{{ request.user.username }}'s Profile</h2>
+                </div>
+                <div class="card-body my_card_body">
+                        <h5>Email: {{ request.user.email }}</h5>
+                        
+                        {% if user.profilepicture.image.url %}
+                        <img src="{{ user.profilepicture.image.url }}" alt="" class="my_image text-center">
+                                
+                        {% else %}
+                        <img src="{% static 'image/dnd.png' %}" alt="" class="my_image text-center">
+                                
+                        {% endif %}
+                        
+                        <form action="{% url 'delete_my_account' %}" method="POST">
+                                {% csrf_token %}
+                        <button class="btn btn-danger mt-3">Delete My Account</button>
+                        </form>
+                        
+                </div>
+        </div>
+</div>
+{% endblock bodycontent %}
+    
+
+{% block extrajs %}
+{% endblock extrajs %}

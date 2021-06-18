@@ -1,0 +1,57 @@
+{% extends 'authentication/authbase.html' %}
+
+{% block extracss %}
+
+{% endblock extracss %}
+
+
+{% block title %}
+        Login
+{% endblock title %}  
+
+
+
+
+{% block bodycontent %}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-info">
+            <h5 class="text-center text-white">Login</h5>
+        </div>
+        <div class="card-body">
+                
+                
+                {% for message in messages %}
+                    <h5 class="alert alert-warning">{{ message  }}</h5>
+                {% endfor %}
+                    
+                    
+                
+                
+            <form action="" method="POST">
+             
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label class="form-control-label mt-3">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required>
+        
+                    <label class="form-control-label mt-3">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="********" required>
+        
+                    <button class="btn btn-primary mt-3">Login</button>
+                </div>
+            </form>
+
+            <a href="{% url 'registerpage' %}">Do not have account? Register</a>
+            <br><a href="{% url 'home' %}">Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock bodycontent %}
+    
+
+{% block extrajs %}
+{% endblock extrajs %}
